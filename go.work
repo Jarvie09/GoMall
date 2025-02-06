@@ -1,3 +1,5 @@
 go 1.22.5
 use .
 use app/frontend
+use app/user
+use rpc_gen
