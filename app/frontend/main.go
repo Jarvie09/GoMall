@@ -3,11 +3,13 @@
 package main
 
 import (
+	"GoMall/app/frontend/infra/rpc"
 	"GoMall/app/frontend/middleware"
 	"context"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
 	"github.com/joho/godotenv"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
 	"time"
 
@@ -25,17 +27,23 @@ import (
 	hertzlogrus "github.com/hertz-contrib/logger/logrus"
 	"github.com/hertz-contrib/pprof"
 	"go.uber.org/zap/zapcore"
-	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
+
 	_ = godotenv.Load()
+	rpc.Init()
 	// init dal
 	// dal.Init()
 	address := conf.GetConf().Hertz.Address
 	h := server.New(server.WithHostPorts(address))
 
 	registerMiddleware(h)
+
+	//Nacos注册中心
+	//sc := []constant.ServerConfig{
+	//	*constant.NewServerConfig("127.0.0.1", 8848),
+	//}
 
 	// add a ping route to test
 	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {

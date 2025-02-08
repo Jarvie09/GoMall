@@ -1,6 +1,8 @@
 package service
 
 import (
+	"GoMall/app/frontend/infra/rpc"
+	"GoMall/rpc_gen/kitex_gen/user"
 	"context"
 	"github.com/hertz-contrib/sessions"
 
@@ -33,7 +35,17 @@ func (h *LoginService) Run(req *frontend_auth.LoginReq) (redirect string, err er
 	//	count = v.(int)
 	//	count++
 	//}
-	session.Set("user_id", 1)
+
+	//远程调用用户服务的登陆方法
+
+	resp, err := rpc.UserClient.Login(h.Context, &user.LoginReq{
+		Email:    req.Email,
+		Password: req.Password,
+	})
+	if err != nil {
+		return "", err
+	}
+	session.Set("user_id", resp.UserId)
 	err = session.Save()
 	if err != nil {
 		return "", err

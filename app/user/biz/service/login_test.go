@@ -1,7 +1,7 @@
 package service
 
 import (
-	user "GoMall/rpc_gen/kitex/user"
+	user "GoMall/rpc_gen/kitex_gen/user"
 	"context"
 	"testing"
 )

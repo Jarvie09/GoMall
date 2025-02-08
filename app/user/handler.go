@@ -1,8 +1,8 @@
 package main
 
 import (
-	"GoMall/biz/service"
-	user "GoMall/rpc_gen/kitex/user"
+	"GoMall/app/user/biz/service"
+	user "GoMall/rpc_gen/kitex_gen/user"
 	"context"
 )
 

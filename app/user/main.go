@@ -1,6 +1,12 @@
 package main
 
 import (
+	"GoMall/app/user/biz/dal"
+	"github.com/joho/godotenv"
+	"github.com/kitex-contrib/registry-nacos/v2/registry"
+
+	//"github.com/kitex-contrib/registry-nacos/v2/registry"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"net"
 	"time"
 
@@ -11,10 +17,11 @@ import (
 	"github.com/cloudwego/kitex/server"
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 	"go.uber.org/zap/zapcore"
-	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
+	_ = godotenv.Load("./.env")
+	dal.Init()
 	opts := kitexInit()
 
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
@@ -39,7 +46,11 @@ func kitexInit() (opts []server.Option) {
 	}))
 
 	//注册中心  Nacos
-
+	r, err := registry.NewDefaultNacosRegistry()
+	if err != nil {
+		panic(err)
+	}
+	opts = append(opts, server.WithRegistry(r))
 	// klog
 	logger := kitexlogrus.NewLogger()
 	klog.SetLogger(logger)

@@ -1,7 +1,10 @@
 package service
 
 import (
+	"GoMall/app/frontend/infra/rpc"
+	"GoMall/rpc_gen/kitex_gen/user"
 	"context"
+	"fmt"
 	"github.com/hertz-contrib/sessions"
 
 	frontend_auth "GoMall/app/frontend/hertz_gen/frontend_auth"
@@ -24,8 +27,16 @@ func (h *RegisterService) Run(req *frontend_auth.RegisterReq) (resp *frontend_au
 	//}()
 	// todo edit your code
 	//对接userService对接
+	userResp, err := rpc.UserClient.Register(h.Context, &user.RegisterReq{
+		Email:           req.Email,
+		Password:        req.Password,
+		PasswordConform: req.PasswordConfirm,
+	})
+	if userResp == nil {
+		fmt.Println("userResp == nil")
+	}
 	session := sessions.Default(h.RequestContext)
-	session.Set("user_id", 1)
+	session.Set("user_id", userResp.UserId)
 	err = session.Save()
 	if err != nil {
 		return nil, err
