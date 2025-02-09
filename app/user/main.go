@@ -3,8 +3,9 @@ package main
 import (
 	"GoMall/app/user/biz/dal"
 	"github.com/joho/godotenv"
+	"github.com/kitex-contrib/registry-nacos/v2/example/hello/kitex_gen/api"
 	"github.com/kitex-contrib/registry-nacos/v2/registry"
-
+	"golang.org/x/net/context"
 	//"github.com/kitex-contrib/registry-nacos/v2/registry"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"net"
@@ -19,6 +20,14 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
+type HelloImpl struct{}
+
+func (h *HelloImpl) Echo(_ context.Context, req *api.Request) (resp *api.Response, err error) {
+	resp = &api.Response{
+		Message: req.Message,
+	}
+	return
+}
 func main() {
 	_ = godotenv.Load("./.env")
 	dal.Init()
@@ -50,6 +59,18 @@ func kitexInit() (opts []server.Option) {
 	if err != nil {
 		panic(err)
 	}
+	//
+	//svr := hello.NewServer(
+	//	new(HelloImpl),
+	//	server.WithRegistry(r),
+	//	server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: "user"}),
+	//	server.WithServiceAddr(&net.TCPAddr{IP: net.IPv4(192, 168, 2, 21), Port: 8888}),
+	//)
+	//if err := svr.Run(); err != nil {
+	//	log.Println("server stopped with error:", err)
+	//} else {
+	//	log.Println("server stopped")
+	//}
 	opts = append(opts, server.WithRegistry(r))
 	// klog
 	logger := kitexlogrus.NewLogger()

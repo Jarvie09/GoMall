@@ -9,6 +9,7 @@ import (
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
 	"github.com/joho/godotenv"
+
 	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
 	"time"
@@ -41,9 +42,16 @@ func main() {
 	registerMiddleware(h)
 
 	//Nacos注册中心
-	//sc := []constant.ServerConfig{
-	//	*constant.NewServerConfig("127.0.0.1", 8848),
+	//r, err := registry.NewDefaultNacosRegistry()
+	//if err != nil {
+	//	panic(err)
 	//}
+
+	//svr := echo.NewServer(
+	//	new(EchoImpl),
+	//	server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: "frontend"}),
+	//	server.WithRegistry(r),
+	//)
 
 	// add a ping route to test
 	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {

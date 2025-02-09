@@ -4,6 +4,7 @@ import (
 	"GoMall/app/frontend/infra/rpc"
 	"GoMall/rpc_gen/kitex_gen/user"
 	"context"
+	"fmt"
 	"github.com/hertz-contrib/sessions"
 
 	frontend_auth "GoMall/app/frontend/hertz_gen/frontend_auth"
@@ -45,11 +46,16 @@ func (h *LoginService) Run(req *frontend_auth.LoginReq) (redirect string, err er
 	if err != nil {
 		return "", err
 	}
+	if resp == nil {
+		fmt.Println("resp空指针")
+	}
+	fmt.Println(resp)
 	session.Set("user_id", resp.UserId)
 	err = session.Save()
 	if err != nil {
 		return "", err
 	}
+
 	if req.Next != "" {
 		redirect = req.Next
 	}

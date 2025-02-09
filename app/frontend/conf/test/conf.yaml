@@ -12,7 +12,11 @@ hertz:
 
 mysql:
   dsn: "gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"
-
+registry:
+  registry_address:
+    - 192.168.2.21:8848
+  username: ""
+  password: ""
 redis:
   address: "127.0.0.1:6379"
   username: ""

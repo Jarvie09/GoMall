@@ -28,4 +28,5 @@ func iniUserClient() {
 	if err != nil {
 		hlog.Fatal(err)
 	}
+
 }

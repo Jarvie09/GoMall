@@ -16,7 +16,7 @@ func TestRegister_Run(t *testing.T) {
 	// init req and assert value
 
 	req := &user.RegisterReq{
-		Email:           "HJWYYDS@outlook.com",
+		Email:           "HJWYYDS@outlook.com1",
 		Password:        "123456",
 		PasswordConform: "123456",
 	}
