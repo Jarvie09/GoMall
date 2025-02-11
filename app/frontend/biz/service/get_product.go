@@ -1,9 +1,12 @@
 package service
 
 import (
+	"GoMall/app/frontend/infra/rpc"
 	"context"
+	"github.com/cloudwego/hertz/pkg/common/utils"
 
 	product "GoMall/app/frontend/hertz_gen/frontend/product"
+	rpcproduct "GoMall/rpc_gen/kitex_gen/product"
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
@@ -16,11 +19,17 @@ func NewGetProductService(Context context.Context, RequestContext *app.RequestCo
 	return &GetProductService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *GetProductService) Run(req *product.ProductReq) (resp *product.Empty, err error) {
+func (h *GetProductService) Run(req *product.ProductReq) (resp map[string]any, err error) {
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// todo edit your code
-	return
+	p, err := rpc.ProductClient.GetProduct(h.Context, &rpcproduct.GetProductReq{
+		Id: req.Id,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return utils.H{"item": p.Product}, nil
 }
