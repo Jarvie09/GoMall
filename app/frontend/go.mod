@@ -6,7 +6,8 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 //replace google.golang.org/protobuf v1.33.0 => google.golang.org/protobuf v1.25.0
 replace google.golang.org/protobuf v1.36.5 => google.golang.org/protobuf v1.25.0
-replace github.com/golang/protobuf v1.5.4  => github.com/golang/protobuf v1.5.2 // indirect
+
+replace github.com/golang/protobuf v1.5.4 => github.com/golang/protobuf v1.5.2 // indirect
 
 require (
 	github.com/cloudwego/hertz v0.9.5
