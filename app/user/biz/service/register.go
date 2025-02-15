@@ -3,6 +3,7 @@ package service
 import (
 	"GoMall/app/user/biz/dal/mysql"
 	"GoMall/app/user/model"
+	"fmt"
 
 	user "GoMall/rpc_gen/kitex_gen/user"
 	"context"
@@ -19,6 +20,7 @@ func NewRegisterService(ctx context.Context) *RegisterService {
 
 // Run create note info
 func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, err error) {
+	fmt.Println("到达User注册方法")
 	// Finish your business logic.
 	if req.Email == "" || req.Password == "" || req.PasswordConform == "" {
 		return nil, errors.New("Email or Password is empty")

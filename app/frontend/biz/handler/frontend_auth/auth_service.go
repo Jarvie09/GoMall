@@ -21,7 +21,7 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	//_ = &frontend_auth.Empty{}
+	_ = &frontend_auth.Empty{}
 	redirect, err := service.NewLoginService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)

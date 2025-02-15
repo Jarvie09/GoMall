@@ -4,6 +4,7 @@ import (
 	"GoMall/app/frontend/infra/rpc"
 	rpcproduct "GoMall/rpc_gen/kitex_gen/product"
 	"context"
+	"fmt"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 
 	product "GoMall/app/frontend/hertz_gen/frontend/product"
@@ -25,12 +26,18 @@ func (h *SearchProductsService) Run(req *product.SearchProductsReq) (resp map[st
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// todo edit your code
+	fmt.Println("开始RPC调用Product服务")
 	products, err := rpc.ProductClient.SearchProducts(h.Context, &rpcproduct.SearchProductsReq{
 		Query: req.Q,
 	})
 	if err != nil {
 
 		return nil, err
+	}
+	if products == nil {
+		fmt.Println("RPC调用User服务失败search")
+		fmt.Println("products == nil")
+		fmt.Println("products")
 	}
 
 	return utils.H{

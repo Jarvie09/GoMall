@@ -3,6 +3,7 @@ package service
 import (
 	"GoMall/app/frontend/infra/rpc"
 	"context"
+	"fmt"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 
 	product "GoMall/app/frontend/hertz_gen/frontend/product"
@@ -25,9 +26,16 @@ func (h *GetProductService) Run(req *product.ProductReq) (resp map[string]any, e
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// todo edit your code
+	fmt.Println("开始RPC调用Product服务")
 	p, err := rpc.ProductClient.GetProduct(h.Context, &rpcproduct.GetProductReq{
 		Id: req.Id,
 	})
+	if p == nil {
+		fmt.Println("RPC调用Product服务失败get_product")
+		fmt.Println("p == nil")
+		fmt.Println("p")
+	}
+
 	if err != nil {
 		return nil, err
 	}

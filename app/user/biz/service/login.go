@@ -6,6 +6,7 @@ import (
 	user "GoMall/rpc_gen/kitex_gen/user"
 	"context"
 	"errors"
+	"fmt"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -19,6 +20,7 @@ func NewLoginService(ctx context.Context) *LoginService {
 // Run create note info
 func (s *LoginService) Run(req *user.LoginReq) (resp *user.LoginResp, err error) {
 	// Finish your business logic.
+	fmt.Println("到达User登录方法")
 	if req.Email == "" || req.Password == "" {
 		return nil, errors.New("Email or Password is empty")
 	}

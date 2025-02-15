@@ -21,8 +21,8 @@ func GetProduct(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := &product.Empty{}
-	resp, err = service.NewGetProductService(ctx, c).Run(&req)
+	//resp := &product.Empty{}
+	resp, err := service.NewGetProductService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
@@ -42,8 +42,8 @@ func SearchProducts(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := &product.Empty{}
-	resp, err = service.NewSearchProductsService(ctx, c).Run(&req)
+	//resp := &product.Empty{}
+	resp, err := service.NewSearchProductsService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return

@@ -51,6 +51,7 @@ func (h *LoginService) Run(req *frontend_auth.LoginReq) (redirect string, err er
 	}
 	fmt.Println(resp)
 	session.Set("user_id", resp.UserId)
+	fmt.Println("login:", resp.UserId)
 	err = session.Save()
 	if err != nil {
 		return "", err
@@ -58,6 +59,9 @@ func (h *LoginService) Run(req *frontend_auth.LoginReq) (redirect string, err er
 
 	if req.Next != "" {
 		redirect = req.Next
+		fmt.Println("不为空next:", req.Next)
 	}
-	return
+	fmt.Println("为空next:", req.Next)
+	return redirect, nil
+
 }
