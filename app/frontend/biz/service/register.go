@@ -28,6 +28,7 @@ func (h *RegisterService) Run(req *frontend_auth.RegisterReq) (resp *frontend_au
 	// todo edit your code
 	//对接userService对接
 	fmt.Println("开始RPC调用User服务")
+	fmt.Println(req)
 	userResp, err := rpc.UserClient.Register(h.Context, &user.RegisterReq{
 		Email:           req.Email,
 		Password:        req.Password,

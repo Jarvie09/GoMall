@@ -1,12 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Bootstrap demo</title>
-      <link href="static/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-  <body>
+{{ define "product" }}
+    {{ template "header" . }}
     <div class="row">
         <div class="card border-0" style="width: 100%;">
             <div class="card-body row">
@@ -57,5 +50,5 @@
             </div>
         </div>
     </div>
-  </body>
-</html>
+    {{ template "footer" . }}
+{{ end }}

@@ -39,5 +39,5 @@ func (h *GetProductService) Run(req *product.ProductReq) (resp map[string]any, e
 	if err != nil {
 		return nil, err
 	}
-	return utils.H{"item": p.Product}, nil
+	return utils.H{"items": p.Product}, nil
 }

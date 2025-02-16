@@ -49,6 +49,6 @@ func SearchProducts(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	c.HTML(consts.StatusOK, "product.tmpl", resp)
+	c.HTML(consts.StatusOK, "product", resp)
 	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
 }

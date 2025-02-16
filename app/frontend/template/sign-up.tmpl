@@ -1,32 +1,28 @@
-sign-up
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="static/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
+{{ define "sign-up" }}
+    {{ template "header" . }}
+    <div class="container row p-5">
+        <div class="col-3"></div>
+        <form method="post" class="col-6" action="/auth/register">
+            <div class="mb-3">
 
-   <body>
-<form method="post" action="/auth/register">
-  <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" >
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password"  name="password" >
-  </div>
-    <div class="mb-3">
-      <label for="password_confirm" class="form-label">Password Confirm</label>
-      <input type="password" class="form-control" id="password_confirm"  name="password_confirm" >
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="mb-3">
+
+                <input type="password" class="form-control" id="password_confirm" name="password_confirm">
+            </div>
+            <div class="mb-3">
+                Already have account, click here to <a href="/sign-in">Sign in</a>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+        </form>
+        <div class="col-3"></div>
     </div>
-  <div class="mb-3">
-  Already have a account,chick here to  <a href="/sign-in">Sign In</a>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign Up</button>
-</form>
-
-  </body>
-</html>
+    {{ template "footer" . }}
+{{ end }}

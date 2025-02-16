@@ -31,7 +31,7 @@ func (h *HomeService) Run(req *frontend_home.Empty) (map[string]any, error) {
 		fmt.Println("商品服务有问题")
 	}
 	fmt.Println(p.Products)
-	return utils.H{"title": "hot sale", "item": p.Products}, nil
+	return utils.H{"title": "hot sale", "items": p.Products}, nil
 	fmt.Println("这里有问题")
 	item := []map[string]any{
 		{"Name": "T-shirt", "Price": 100, "Picture": "/static/imag/logo.jpg"},
@@ -43,6 +43,7 @@ func (h *HomeService) Run(req *frontend_home.Empty) (map[string]any, error) {
 	}
 	resp := make(map[string]any)
 	resp["item"] = item
+	fmt.Println(resp["item"])
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)

@@ -64,15 +64,15 @@ func main() {
 	//登录
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
 		data := utils.H{"Title": "Sign In", "Next": ctx.Query("next")}
-		ctx.HTML(consts.StatusOK, "sign-in.tmpl", data)
+		ctx.HTML(consts.StatusOK, "sign-in", data)
 	})
 	//注册
 	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "sign-up.tmpl", utils.H{"Title": "Sign Up"})
+		ctx.HTML(consts.StatusOK, "sign-up", utils.H{"Title": "Sign Up"})
 	})
 	//关于
 	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "about.tmpl", utils.H{"Title": "About"})
+		ctx.HTML(consts.StatusOK, "about", utils.H{"Title": "About"})
 	})
 	h.Spin()
 }
