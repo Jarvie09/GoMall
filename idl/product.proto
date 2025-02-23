@@ -63,7 +63,7 @@ message Product_category{
 
 //删除
 message DeleteProductsReq{
-  Product product = 1;
+  uint32 id = 1;
 
 }
 //修改
